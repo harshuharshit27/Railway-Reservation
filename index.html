@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+
+{% block content %}
+  
+  <div class="container">
+    <div class="row">
+      <form action="{% url 'booking:search' %}" class="form-inline">
+        <fieldset class="form-group">
+        <p>source station</p>
+          <input type="text" name="source" class="form-control" required>
+        </fieldset>
+        <fieldset class="form-group">
+        <p>Destination station</p>
+          <input type="text" name="destination" class="form-control" required>
+        </fieldset>
+        <p>Date</p>
+        <fieldset class="form-group">
+          <input type="date" name="date" class="form-control" required>
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

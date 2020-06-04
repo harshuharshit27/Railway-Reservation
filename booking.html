@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+
+{% block content %}
+  
+  <div class="container">
+    <div class="row text-xs-center">
+      <h2>Book a Ticket</h2>
+      <h3>Train Name: {{ train_context.train.name }}</h3>
+      <p>Class: {{ train_context.class }}</p>
+      <p>Available Seat: {{ train_context.seat }}</p>
+      {% if train_context.seat == 0 %} 
+      <p>All seats are booked</p>
+      {% else %}
+      <form action="{% url 'booking:book_ticket' %}" class="form-inline" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="text" id="id_train" name="train" value="{{ train_context.train.pk }}" hidden>
+        <input type="text" name="class" value="{{ train_context.class_model_name }}" hidden>
+        
+        <button type="submit" class="btn btn-primary">Book Ticket</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
